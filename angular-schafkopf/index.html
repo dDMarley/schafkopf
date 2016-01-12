@@ -8,13 +8,11 @@
 <meta name="author" content="">
 <title>Die Krone</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap-3.1.1.min.css">
 <link rel="stylesheet" href="assets/css/jumbotron-narrow.css">
 <link rel="stylesheet" href="assets/css/main.css">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
+<script src="assets/libs/angular-1.4.8.min.js"></script>
 <script src="assets/libs/ui-bootstrap-tpls-0.14.3.min.js"></script>
 <script src="app/module.js"></script>
 <script src="app/components/board/initBoardCtrl.js"></script>
@@ -37,13 +35,14 @@
 			<h3>Die Krone</h3>
 		</div>
 		<div class="app_board">
-			<div select-player="players" style="margin: auto;width: 65%;"></div>
+			<div select-player="players" style="margin: auto; width: 65%;"></div>
 			<div ng-controller="InitBoardCtrl">
 				<div style="width: 65%; margin: auto;">
 					<table id="header_row">
 						<tr>
 							<td ng-repeat="ele in header_row">
-								<div class="canvas_container" draw-element="ele" ng-include="'assets/static/gridElement.html'"></div>
+								<div class="canvas_container" draw-element="ele"
+									ng-include="'assets/static/gridElement.html'"></div>
 							</td>
 						</tr>
 					</table>
@@ -52,8 +51,12 @@
 					<table>
 						<tr ng-controller="ModalDialogCtrl" ng-repeat="row in elements">
 							<td ng-repeat="col in row">
-								<div ng-if="col.type.lastIndexOf('info', 0) !== 0" ng-click="open()" class="canvas_container" draw-element="col" ng-include="'assets/static/gridElement.html'"></div>
-								<div ng-if="col.type.lastIndexOf('info', 0) === 0" class="canvas_container" draw-element="col" ng-include="'assets/static/gridElement.html'"></div>
+								<div ng-if="col.type.lastIndexOf('info', 0) !== 0"
+									ng-click="open()" class="canvas_container" draw-element="col"
+									ng-include="'assets/static/gridElement.html'"></div>
+								<div ng-if="col.type.lastIndexOf('info', 0) === 0"
+									class="canvas_container" draw-element="col"
+									ng-include="'assets/static/gridElement.html'"></div>
 							</td>
 						</tr>
 					</table>
@@ -62,7 +65,8 @@
 					<table id="footer_row">
 						<tr>
 							<td ng-repeat="ele in footer_row">
-								<div class="canvas_container" draw-element="ele" ng-include="'assets/static/gridElement.html'"></div>
+								<div class="canvas_container" draw-element="ele"
+									ng-include="'assets/static/gridElement.html'"></div>
 							</td>
 						</tr>
 					</table>
