@@ -1,0 +1,76 @@
+<div class="modal-header">
+	<h4 class="modal-title">Spielergebnis</h4>
+</div>
+
+<div ng-controller="ModalElementsCtrl" class="modal-body">
+
+	<div >
+		<uib-tabset justified="true">
+		    <uib-tab heading="{{tabs.rufspiel}}" ng-click="selectTab(tabs.rufspiel); setDropdown(tmpLaeufer.ruf)"><p></p></uib-tab>
+		    <uib-tab heading="{{tabs.ramsch}}" ng-click="selectTab(tabs.ramsch); winner.iswinner = 'false'"><p></p></uib-tab>
+		    <uib-tab heading="{{tabs.solo}}" ng-click="selectTab(tabs.solo); setDropdown(tmpLaeufer.solo)"><p></p></uib-tab>
+		    <uib-tab heading="{{tabs.wenz}}" ng-click="selectTab(tabs.wenz); setDropdown(tmpLaeufer.wenz)"><p></p></uib-tab>    
+	  	</uib-tabset>
+	</div>
+	<div>
+		<div class="btn-group">
+			<label ng-disabled="tabs.selected === 'Rufspiel'" class="btn btn-primary" ng-model="winner.iswinner" uib-btn-radio="'true'">Gewonnen</label>
+		    <label ng-disabled="tabs.selected === 'Rufspiel'" class="btn btn-primary" ng-model="winner.iswinner" uib-btn-radio="'false'">Verloren</label>
+		</div>
+		<div ng-hide="tabs.selected === 'Rufspiel' || tabs.selected === 'Ramsch'" class="btn-group">
+	        <label class="btn btn-primary" ng-model="checkbox.du" uib-btn-checkbox>Du</label>
+	        <label ng-disabled="tabs.selected === 'Wenz'" class="btn btn-primary" ng-model="checkbox.sie" uib-btn-checkbox>Sie</label>
+    	</div>
+	</div>
+	
+	
+	<hr>
+
+	<div class="btn-group" uib-dropdown>
+		<button id="single-button" type="button" class="btn btn-primary"
+			uib-dropdown-toggle >
+			{{player1Selected}} <span class="caret"></span>
+		</button>
+		<ul class="uib-dropdown-menu" role="menu"
+			aria-labelledby="single-button">
+			<li ng-repeat="player in players1tmp">
+				<a ng-click="selectPlayer1(player)" href="#">{{player}}</a>
+			</li>
+		</ul>
+	</div>
+	<div class="btn-group" ng-show="tabs.selected === 'Rufspiel'" uib-dropdown>
+		<button id="single-button" type="button" class="btn btn-primary"
+			uib-dropdown-toggle >
+			{{player2Selected}} <span class="caret"></span>
+		</button>
+		<ul class="uib-dropdown-menu" role="menu"
+			aria-labelledby="single-button">
+			<li ng-repeat="player in players2tmp">
+				<a ng-click="selectPlayer2(player)" href="#">{{player}}</a>
+			</li>
+		</ul>
+	</div>
+	<hr>
+	<div ng-hide="tabs.selected === 'Ramsch'">
+	    <div class="btn-group" uib-dropdown>
+			<button id="single-button" type="button" class="btn btn-primary"
+				uib-dropdown-toggle >
+				{{laeuferSelected}} <span class="caret"></span>
+			</button>
+			<ul class="uib-dropdown-menu" role="menu"
+				aria-labelledby="single-button">
+				<li ng-repeat="n in laeufer">
+					<a ng-click="selectLaeufer(n)" href="#">{{n}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="btn-group">
+	        <label ng-disabled="checkbox.du || checkbox.sie" class="btn btn-primary" ng-model="checkbox.schneider" uib-btn-checkbox>Schneider</label>
+	        <label ng-disabled="checkbox.du || checkbox.sie" class="btn btn-primary" ng-model="checkbox.schwarz" uib-btn-checkbox>Schwarz</label>
+	    </div>	
+	</div>
+</div>
+<div ng-controller="CalcRowCtrl" class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="ok(); onGameEditFinish(collectRowData())">OK</button>
+	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

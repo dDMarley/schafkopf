@@ -1,0 +1,1 @@
+angular.module('schafkopf',['schafkopf.controllers','schafkopf.directives', 'ui.bootstrap']);

@@ -1,0 +1,82 @@
+<!doctype html>
+<html ng-app="schafkopf">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Die Krone</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="assets/libs/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<script src="app/module.js"></script>
+<script src="app/components/board/initBoardCtrl.js"></script>
+<script src="app/components/board/calcBoardCtrl.js"></script>
+<script src="app/components/dialog/modalDialogCtrl.js"></script>
+<script src="app/shared/board/drawBoardDirective.js"></script>
+<script src="app/shared/players/selectPlayerDirective.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link href="assets/css/jumbotron-narrow.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Regeln</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+			<h3>Die Krone</h3>
+		</div>
+		<div class="app_board">
+			<div select-player="players" style="margin: auto;width: 65%;"></div>
+			<div ng-controller="InitBoardCtrl">
+				<div style="width: 65%; margin: auto;">
+					<table id="header_row">
+						<tr>
+							<td ng-repeat="ele in header_row">
+								<div class="canvas_container" draw-element="ele" ng-include="'assets/static/gridElement.html'"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="board" style="width: 65%; height: 400px; margin: auto;">
+					<table>
+						<tr ng-controller="ModalDialogCtrl" ng-repeat="row in elements">
+							<td ng-repeat="col in row">
+								<div ng-if="col.type.lastIndexOf('info', 0) !== 0" ng-click="open()" class="canvas_container" draw-element="col" ng-include="'assets/static/gridElement.html'"></div>
+								<div ng-if="col.type.lastIndexOf('info', 0) === 0" class="canvas_container" draw-element="col" ng-include="'assets/static/gridElement.html'"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div style="width: 65%; margin: auto;">
+					<table id="footer_row">
+						<tr>
+							<td ng-repeat="ele in footer_row">
+								<div class="canvas_container" draw-element="ele" ng-include="'assets/static/gridElement.html'"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<p>&copy; 2016 Jojo, Inc.</p>
+		</footer>
+	</div>
+	<!-- 	<div> -->
+	<!-- 		<label>Name:</label> <input type="text" ng-model="yourName" -->
+	<!-- 			placeholder="Enter a name here"> -->
+	<!-- 		<hr> -->
+	<!-- 		<h1>Hello {{yourName}}!</h1> -->
+	<!-- 	</div> -->
+
+</body>
+</html>
+
