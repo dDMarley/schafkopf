@@ -25,7 +25,7 @@ angular.module('schafkopf.directives', [])
 			}
 			// --> Draw the background with $watchCollection
 			// each time the array values of elements[n][n].text changes
-			drawBlock($scope.ctx, elementContainer);
+			//drawBlock($scope.ctx, elementContainer);
         });
 		
 		// Draw the background with $watchCollection each time the elements[n][n] values change
@@ -114,12 +114,13 @@ angular.module('schafkopf.directives', [])
 				ctx.fillText(textSplit[1], ctx.canvas.width/1.25, ctx.canvas.height/1.6);
 			} else if(angular.equals(eleContainer.type,"info_right")) {
 				//ctx.font = "15px glyphicon";Glyphicons Halflings
-				ctx.font = "25px glyphicon";
+				ctx.font = "10px glyphicon";
 				ctx.fillStyle = "white";
 				ctx.textAlign = "center";
 				ctx.fillText(".", ctx.canvas.width/4, ctx.canvas.height/2.4);
-				ctx.fillText(eleContainer.text, ctx.canvas.width/4, ctx.canvas.height/2.4);
+				ctx.fillText("*", ctx.canvas.width/4, ctx.canvas.height/2.4);
 				ctx.fillText(String.fromCharCode(0xe023), 20, ctx.canvas.height/1.5);//&#xe003;
+				ctx.fill();
 			} else {
 				// Fill the canvas with text
 				ctx.font = "20px Comic Sans MS";
