@@ -1,49 +1,36 @@
 angular.module('schafkopf.controllers')
 .controller('ModalDialogCtrl', function($scope, $uibModal, $log) {
+	
 	$scope.open = function(size) {
 		var modalInstance = $uibModal.open({
 			animation : true,
 			templateUrl : 'app/components/dialog/modalDialog.html',
 			controller : 'ModalInstanceCtrl',
-			size : size,
-			resolve : {
-				items : function() {
-					return $scope.items;
-				}
-			}
+			size : size
 		});
 
-//		modalInstance.result.then(function(selectedItem) {
-//			$scope.selected = selectedItem;
-//			$scope.elements[selectedItem][0].id = selectedItem;
-//		}, function() {
-//			$log.info('Modal dismissed at: ' + new Date());
-//		});
+		// Is called when modal is closed
+		modalInstance.result.then(function(data) {
+			// Send an event down for calculation
+			// with the row data attached:
+			$scope.$broadcast('ok_row_calculation', data);
+		});
 	};
-
-	// $scope.animationsEnabled = true;
-	// $scope.toggleAnimation = function() {
-	// $scope.animationsEnabled = !$scope.animationsEnabled;
-	// };
-
 })
 
 // Please note that $modalInstance represents a modal window (instance)
 // dependency.
 // It is not the same as the $uibModal service used above.
 
-.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, items) {
+.controller('ModalInstanceCtrl', function($scope, $uibModalInstance) {
 
 	$scope.ok = function() {
-		$uibModalInstance.close(); // e.g. close($scope.selected.item);
+		$uibModalInstance.close(collectRowData()); // e.g. close($scope.selected.item);
 	};
 
 	$scope.cancel = function() {
 		$uibModalInstance.dismiss('cancel');
 	};
-})
-
-.controller('ModalElementsCtrl', function($rootScope, $scope, $log) {
 	
 	// Tabs section ---------------------------------------------
 	$scope.tabs = {
@@ -147,20 +134,6 @@ angular.module('schafkopf.controllers')
 	};
 	// ----------------------------------------------------------
 	
-	$rootScope.collectRowData = function() {
-		return gameData = {
-				play_type : $scope.tabs.selected,
-				first_winner : $scope.player1Selected,
-				second_winner : $scope.player2Selected,
-				is_winner : $scope.winner.iswinner,
-				is_du : $scope.checkbox.du,
-				is_sie : $scope.checkbox.sie,
-				is_schneider : $scope.checkbox.schneider,
-				is_schwarz : $scope.checkbox.schwarz,
-				laeufer : $scope.laeuferSelected
-		};
-	};
-	
 	/**
 	 * Init all elements each time a tab is changed:
 	 */
@@ -177,4 +150,19 @@ angular.module('schafkopf.controllers')
 		$scope.laeufer = [];
 		$scope.laeuferSelected = "Wähle Läufer";
 	};
+	
+	var collectRowData = function() {
+		return gameData = {
+				play_type : $scope.tabs.selected,
+				first_winner : $scope.player1Selected,
+				second_winner : $scope.player2Selected,
+				is_winner : $scope.winner.iswinner,
+				is_du : $scope.checkbox.du,
+				is_sie : $scope.checkbox.sie,
+				is_schneider : $scope.checkbox.schneider,
+				is_schwarz : $scope.checkbox.schwarz,
+				laeufer : $scope.laeuferSelected
+		};
+	};
 });
+

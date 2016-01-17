@@ -11,9 +11,12 @@
 <link rel="stylesheet" href="assets/css/bootstrap-3.1.1.min.css">
 <link rel="stylesheet" href="assets/css/jumbotron-narrow.css">
 <link rel="stylesheet" href="assets/css/main.css">
-<script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
+<link rel="stylesheet" href="assets/css/animation.css">
+<!-- <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script> -->
 <script src="assets/libs/angular-1.4.8.min.js"></script>
+<script src="assets/libs/angular-animate-1.4.8.min.js"></script>
 <script src="assets/libs/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<!-- <script src="assets/libs/bootstrap.min.js"></script> -->
 <script src="app/module.js"></script>
 <script src="app/components/board/initBoardCtrl.js"></script>
 <script src="app/components/board/calcBoardCtrl.js"></script>
@@ -23,7 +26,7 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" ng-style="{'width': (width * ((player_count + 2) * 2 )) + 'px'}">
 		<div class="header">
 			<nav>
 				<ul class="nav nav-pills pull-right">
@@ -34,11 +37,12 @@
 			</nav>
 			<h3>Die Krone</h3>
 		</div>
-		<div class="app_board">
-			<div select-player="players" style="margin: auto; width: 65%;"></div>
+		<div class="app_board" ng-controller="ModalDialogCtrl">
+		
+			<div select-player="players"></div>
 			<div ng-controller="InitBoardCtrl">
-				<div style="width: 65%; margin: auto;">
-					<table id="header_row">
+				<div>
+					<table id="header_row" ng-controller="CalcRowCtrl">
 						<tr>
 							<td ng-repeat="ele in header_row">
 								<div class="canvas_container" draw-element="ele"
@@ -47,9 +51,9 @@
 						</tr>
 					</table>
 				</div>
-				<div class="board" style="width: 65%; height: 400px; margin: auto;">
+				<div class="board">
 					<table>
-						<tr ng-controller="ModalDialogCtrl" ng-repeat="row in elements">
+						<tr ng-repeat="row in elements">
 							<td ng-repeat="col in row">
 								<div ng-if="col.type.lastIndexOf('info', 0) !== 0"
 									ng-click="open()" class="canvas_container" draw-element="col"
@@ -61,7 +65,7 @@
 						</tr>
 					</table>
 				</div>
-				<div style="width: 65%; margin: auto;">
+				<div>
 					<table id="footer_row">
 						<tr>
 							<td ng-repeat="ele in footer_row">
@@ -77,13 +81,5 @@
 			<p>&copy; 2016 Jojo, Inc.</p>
 		</footer>
 	</div>
-	<!-- 	<div> -->
-	<!-- 		<label>Name:</label> <input type="text" ng-model="yourName" -->
-	<!-- 			placeholder="Enter a name here"> -->
-	<!-- 		<hr> -->
-	<!-- 		<h1>Hello {{yourName}}!</h1> -->
-	<!-- 	</div> -->
-
 </body>
 </html>
-

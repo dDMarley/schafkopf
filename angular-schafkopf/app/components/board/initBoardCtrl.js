@@ -4,9 +4,9 @@ angular.module('schafkopf.controllers', [])
 	var rows = 24;
 	$rootScope.player_count = 4;
 	var columns = ($scope.player_count * 2) + 1;
-	var width = 40;
+	var width = 50;
 	$rootScope.width = width;
-	var height = 40;
+	var height = 50;
 	$rootScope.height = height;
 	var top = 0;
 	var left = 0;
@@ -21,29 +21,32 @@ angular.module('schafkopf.controllers', [])
 	// -------------------------------
 	
 	// ---------- Get Players ---------
-	
-	$rootScope.players = {
-			player_one : {
+	$rootScope.players = [
+			{
 				name: "Spieler 1",
 				id: "1",
-				position: "player_1"
+				position: "player_1",
+				isInit: false
 			},
-			player_two : {
+			{
 				name: "Spieler 2",
 				id: "1",
-				position: "player_2"
+				position: "player_2",
+				isInit: false
 			},
-			player_three : {
+			{
 				name: "Spieler 3",
 				id: "1",
-				position: "player_3"
+				position: "player_3",
+				isInit: false
 			},
-			player_four : {
+			{
 				name: "Spieler 4",
 				id: "1",
-				position: "player_4"
-			},
-	};
+				position: "player_4",
+				isInit: false
+			}
+	];
 	
 	// --- Plus Minus row
 	var header_row = [];

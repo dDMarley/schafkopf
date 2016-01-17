@@ -1,1 +1,1 @@
-angular.module('schafkopf',['schafkopf.controllers','schafkopf.directives', 'ui.bootstrap']);
+angular.module('schafkopf',['schafkopf.controllers','schafkopf.directives', 'ui.bootstrap', 'ngAnimate']);

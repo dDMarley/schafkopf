@@ -1,9 +1,13 @@
 angular.module('schafkopf.controllers')
-.controller('CalcRowCtrl', function($rootScope, $scope) {
+.controller('CalcRowCtrl', function($scope) {
 	
-	$scope.onGameEditFinish = function(rowData) {
+	// Its called per event $broadcast down from the modal dialog,
+	// but could be call from other components
+	$scope.$on('ok_row_calculation',
+			function(evt, data) {
+		var rowData = data;
 		result = calcRow(rowData);
-		var row = $scope.elements[$rootScope.round_number];
+		var row = $scope.elements[$scope.round_number];
 		var counter = 1;
 		for (var i = 1; i < 5; i++) {
 			if (isPlayerWinner(rowData, 'Spieler ' + i)) {
@@ -25,10 +29,10 @@ angular.module('schafkopf.controllers')
 			}
 			counter = counter + 2;
 		};
-		$rootScope.round_number++;
+		$scope.round_number++;
 		calcHeader(rowData, row);
 		calcFooter(rowData, row);
-	};
+	});
 	
 	function calcHeader(rowData, row) {
 		var points;
@@ -187,6 +191,5 @@ angular.module('schafkopf.controllers')
 		}
 		array[1] = 3;
 		return array;
-
 	};
-})
+});

@@ -114,13 +114,11 @@ angular.module('schafkopf.directives', [])
 				ctx.fillText(textSplit[1], ctx.canvas.width/1.25, ctx.canvas.height/1.6);
 			} else if(angular.equals(eleContainer.type,"info_right")) {
 				//ctx.font = "15px glyphicon";Glyphicons Halflings
-				ctx.font = "10px glyphicon";
+				ctx.font = "15px Comic Sans MS";
 				ctx.fillStyle = "white";
 				ctx.textAlign = "center";
-				ctx.fillText(".", ctx.canvas.width/4, ctx.canvas.height/2.4);
-				ctx.fillText("*", ctx.canvas.width/4, ctx.canvas.height/2.4);
-				ctx.fillText(String.fromCharCode(0xe023), 20, ctx.canvas.height/1.5);//&#xe003;
-				ctx.fill();
+				ctx.fillText(eleContainer.text, ctx.canvas.width/4, ctx.canvas.height/2.4);
+//				ctx.fillText(String.fromCharCode(0xe023), 20, ctx.canvas.height/1.5);//&#xe003;
 			} else {
 				// Fill the canvas with text
 				ctx.font = "20px Comic Sans MS";
