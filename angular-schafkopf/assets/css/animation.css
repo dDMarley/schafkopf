@@ -1,6 +1,6 @@
 .animate-show {
 	height: 50px;
-/* 	opacity: 1; */
+	opacity: 1;
 }
 
 .animate-show.ng-hide-add,.animate-show.ng-hide-remove {
@@ -9,5 +9,5 @@
 
 .animate-show.ng-hide {
 	height: 0;
-/* 	opacity: 0; */
+	opacity: 0;
 }
