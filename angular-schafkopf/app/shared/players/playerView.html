@@ -21,16 +21,14 @@
 	<table id="player_row">
 		<tr>
 			<td id="empty_left"><div class="canvas_container"></div></td>
-			<td ng-repeat="player in players"><span tabindex="0"
-				style="position: relative;" ng-focus="visible = true"
-				ng-blur="visible = false">
+			<td ng-repeat="player in players"><span
+				style="position: relative;"
+				ng-click="$parent.checked = !$parent.checked; checked ? onSelect(players_position[$index]) : ''">
 					<div class="canvas_container player_canvas">{{player.name}}</div>
 					<span
-					ng-show="visible" class="edit glyphicon"
-					ng-click="$parent.checked = !$parent.checked; checked ? onSelect(players_position[$index]) : ''"
-					ng-mouseover="hover = true"
-					ng-mouseleave="hover = false"
-					ng-class="{'glyphicon-edit' : hover, 'glyphicon-share' : visible && !hover}"></span>
+					ng-show="$parent.checked" class="edit glyphicon glyphicon-edit">
+<!-- 					ng-class="{'glyphicon-edit' : hover, 'glyphicon-share' : visible && !hover}"> -->
+					</span>
 
 			</span></td>
 			<td id="empty_right"><div class="canvas_container"></div></td>

@@ -128,10 +128,9 @@ td div {
 }
 
 .player_header {
-	    margin-top: 20px;
-    margin-bottom: 20px;
+	position : relative;
     border: 0;
-    border-top: 1px solid #eee;
-    border-bottom: 10px solid aqua;
+    border-top: 2px solid #E8E4D4;
+    border-bottom: 10px solid #A19776;
     z-index: 100;
 }
